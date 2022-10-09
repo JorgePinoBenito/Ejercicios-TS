@@ -1,0 +1,7 @@
+const arr = [1,2,3,4,5,6];
+const resultado1 = arr.filter((numero: number) => numero%2===0);
+console.log(resultado1);
+
+const palabras = ['elefante', 'perro', 'gato', 'pan', 'hola', 'que'];
+const resultado2 = palabras.filter((palabra:string) => palabra.length > 4);
+console.log(resultado2);

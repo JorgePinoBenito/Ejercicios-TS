@@ -1,0 +1,90 @@
+const nums = [2,5,3,2,3];
+
+const otrosnums = nums.map((n:number, index:number) => 
+{
+    if(index%2===0)
+    {
+        return n*2;
+    }
+    else
+    {
+        return n*3;
+    }
+
+});
+
+const otrosnums2 = nums.map((n, index) =>
+{
+    if(index%2===0 && n%2===0)
+    {
+        return n*2;
+    }
+    else
+    {
+        return n;
+    }
+});
+
+function anadir(a:number,b:number)
+{
+    return a+b;
+}
+
+const sumar = (a:number, b:number) => a+b;
+
+const multiply = (n:number) =>
+{
+    const f = (a:number) => n*a;
+    return f;
+}
+
+const double = multiply(2);
+const triple = multiply(3);
+
+const a = double(6);
+const b = triple(6);
+
+const suma=sumar(2,3);
+
+const resultado=anadir(2,3);
+
+const personas = 
+[
+    {name: "Alberto", edad: 23},
+    {name: "Jorge", edad: 10},
+    {name: "Pedro", edad: 5}
+]
+
+const persona = personas.find(p => 
+{
+    console.log(p.name);
+    return p.name === "Jorge"
+});
+
+if(persona) //referencia
+{
+    persona.edad = 50;
+}
+
+console.log(otrosnums2);
+console.log(suma);
+console.log(resultado);
+console.log(a);
+console.log(b);
+console.log(personas);
+
+// if n%2 === 0 console.log(n);
+nums.forEach(n => n%2 === 0 && console.log(n));
+
+// lo  mismo que el anterior
+const prueba = nums.forEach((n) =>
+{
+    if(n%2===0)
+    {
+       console.log(n);
+    }
+});
+
+/*const suma = (a:number, b:number) => {
+    return a+b;
+}*/

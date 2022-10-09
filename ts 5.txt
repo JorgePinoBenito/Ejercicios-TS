@@ -1,0 +1,99 @@
+//objeto simple
+const alberto1 = {
+    nombre:"Alberto",
+    edad:18,
+    amigos:["Maria","Juan", "Jose"]
+};
+
+//objeto con objeto anidado y definicion de type
+const alberto2: Persona= {
+    nombre:"Alberto",
+    edad:18,
+    amigos:["Maria","Juan", "Jose"],
+    coche: {
+        marca: "Seat",
+        matricula: "1234DHL"
+    }
+};
+
+//objeto con objeto anidado quitando algunos atributos y solucionando con <Partial> puede que tenga ciertos atributos o no (le pueden faltar cosas) en este caso edad
+const alberto3: Partial<Persona>= {
+    nombre:"Alberto",
+    amigos:["Maria","Juan", "Jose"],
+    coche: {
+        marca: "Seat",
+        matricula: "1234DHL"
+    }
+};
+
+//objeto con objeto anidado quitando algunos atributos y solucionando con <Omit> indico que no tiene ciertos atributos (le faltan cosas) en este caso edad
+const alberto4: Omit<Persona, "edad">= {
+    nombre:"Alberto",
+    amigos:["Maria","Juan", "Jose"],
+    coche: {
+        marca: "Seat",
+        matricula: "1234DHL"
+    }
+};
+
+//type -> al estar en ts hay que tipar las cosas, es decir poner tipos
+type Persona = {
+    nombre:string,
+    edad:number,
+    amigos:string [],
+    coche:Coche,
+    //? -> algunas "nombre del type" tendran este atributo o no (tipo optativo)
+    nombrePareja?:string
+};
+
+type Coche = {
+    marca:string,
+    matricula:string
+};
+
+type Persona1 = {
+    nombre:string,
+    edad:number
+};
+
+const personas: Array<Partial<Persona1>>= [
+    {nombre:"Alberto", edad:18},
+    {nombre:"Maria", edad:23},
+    {nombre:"Juan", edad:21},
+    {nombre:"Alberto", edad:23}
+]
+
+const elprimeralberto: Partial<Persona1> | undefined = personas.find(p=>p.nombre==="Alberto");
+
+if(elprimeralberto?.edad){
+    console.log(elprimeralberto.edad);
+}
+
+//if(elprimeralberto && elprimeralberto.edad)
+
+const elprimeralbertoconedad: Partial<Persona1> | undefined = personas.find(p=>(p.nombre==="Alberto" && p.edad));
+
+const numerodealbertos1 = personas.filter(p=>p.nombre==="Alberto").length;
+
+const numerodealbertos2 = personas.reduce((acc:number, p:Partial<Persona1>) => {
+    if(p.nombre==="Alberto") return acc+1;
+    else return acc;
+}, 0);
+
+type Persona2 = {
+    nombre:string,
+    edad:number
+};
+
+type Estudiante = {
+    universidad:string,
+    curso:number
+};
+
+//compilar types con & -> atributos de ambos
+const celia: Estudiante & Persona2 = {
+    universidad: "Nebrija",
+    curso: 3,
+    nombre: "Celia",
+    edad: 21
+};

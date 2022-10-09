@@ -1,0 +1,18 @@
+type Persona = {
+    nombre: string,
+    edad: number,
+}
+
+type Estudiante = {
+    universidad: string,
+    curso: number,
+}
+
+const celia: Estudiante & Persona = {
+    universidad:"Nebrija",
+    curso:3,
+    nombre: "Celia",
+    edad:21
+}
+
+web-backend alberto valero github

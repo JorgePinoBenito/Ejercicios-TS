@@ -1,0 +1,47 @@
+const nums = [1,2,3,4,5,6,7,8,9,10];
+
+const pares = nums.filter(number => number%2===0); //pares con filter
+
+const maximoconmath = nums.reduce((n,m) => Math.max(n,m), -Number.POSITIVE_INFINITY) // maximo con math
+const minimoconmath = nums.reduce((n,m) => Math.min(n,m), Number.POSITIVE_INFINITY) // minimo con math
+
+const maximoconreduce = nums.reduce((quedo:number, elem: number) => { // maximo con reduce
+    if(elem>quedo)return elem;
+    else return quedo;
+}, nums[0]);
+
+const minimoconreduce = nums.reduce((quedo:number, elem: number) => { // minimo con reduce
+    if(elem<quedo)return elem;
+    else return quedo;
+}, nums[0]);
+
+const mayoresque10conevery = nums.every(number => number>10); // mayores que 10 con every
+const mayoresque10consome = !nums.some(number => number<10); // menores que 10 con every
+
+const doblearrayconmap = nums.map((n:number) => n*2); // doble de array con map
+const doblearrayconreduce = nums.reduce((acc:number[], elem:number) => { // doble de array con reduce
+    return [...acc, 2*elem];
+}, []);
+
+const revertirconreverse = nums.reverse(); // invertir array con reverse()
+const revertirconreduce = nums.reduce((acc:number[], elem:number) => { // invertir array con reduce()
+    return [elem, ...acc];
+}, []);
+
+console.log(pares);
+
+console.log(maximoconmath); 
+console.log(minimoconmath); 
+
+console.log(maximoconreduce);
+console.log(minimoconreduce);
+
+console.log(mayoresque10conevery);
+console.log(mayoresque10consome);
+
+console.log(doblearrayconmap);
+console.log(doblearrayconreduce);
+
+console.log(revertirconreverse);
+console.log(revertirconreduce);
+

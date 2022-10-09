@@ -1,0 +1,52 @@
+type Person = {
+    name:string,
+    age:number,
+    couple:boolean,
+    coupleName?:string
+};
+
+const persona1: Person = {
+    name:"Alberto",
+    age:2,
+    couple:true,
+    coupleName: "Maria"
+};
+
+persona1.name="Pedro";
+persona1["age"]=22;
+
+//Object.keys devuelve un array con las claves del objeto
+//Object.keys(persona1).forEach(key =>console.log(persona1[key as keyof typeof persona1]));
+//Object.keys(persona1).forEach(key =>console.log(persona1 as any));
+
+//Object.values devuelve los valores del objeto
+//console.log(Object.values(persona1));
+
+const arraydepersona = Object.values(persona1);
+
+type Pair = {
+    key:string,
+    value:string|boolean|number|undefined
+};
+
+//de un objeto a un array
+const arrdeobjeto = Object.keys(persona1).reduce((acc:Array<Pair>,key)=>{
+    acc.push({
+        key:key,
+        value: persona1[key as keyof typeof persona1],
+    });
+    return acc;
+}, []);
+
+console.log(arrdeobjeto);
+
+//de un array a un objeto
+arrdeobjeto.reduce((acc, elem) => {
+  return {
+    ...acc, //copia el contenido, coge los valores de acc
+    [elem.key]:elem.value,
+  }
+}, {});
+
+console.log(arrdeobjeto);12:30 30/09/2022
+Object.keys(persona1).forEach(key =>console.log(persona1 as any));

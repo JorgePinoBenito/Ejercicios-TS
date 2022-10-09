@@ -1,0 +1,85 @@
+export function add(a: number, b: number): number {
+  return a + b;
+}
+
+export function multiply(a: number, b: number): number {
+  return a * b;
+}
+
+export function substract(a: number, b: number): number {
+  return a - b;
+}
+
+type info = {
+  count: number;
+  pages: number;
+  next: string | null;
+  prev: string | null;
+};
+
+type results = {
+  id: number;
+  name: string;
+  status: string;
+  species: string;
+  type: string;
+  gender: string;
+  url: string;
+};
+
+type location = {
+  name: string;
+  url: string;
+};
+
+type Planet = {
+  name: string;
+  url: string;
+};
+
+enum STATUS {
+  ALIVE = "Alive",
+  DEAD = "Dead",
+  UNKNOWN = "unknown",
+}
+
+enum Gender {
+  MALE = "Male",
+  FEMALE = "Female",
+  UNKNOWN = "unknown",
+}
+type Characters = {
+  id: number;
+  name: string;
+  status: STATUS;
+  species: string;
+  gender: Gender;
+  type: string;
+  origin: Planet;
+  location: location;
+  image: string;
+  episode: string[];
+  url: string;
+  created: string;
+  results: results[];
+};
+
+type origin = {
+  name: string;
+  url: string;
+};
+
+const jsonResponse = await fetch("https://rickandmortyapi.com/api/character");
+const jsonData: Characters = await jsonResponse.json();
+debugger;
+
+const ricks = jsonData.results
+  .filter((char) => char.name.includes("Rick"))
+  .map((char) => {
+    return {
+      name: char.name,
+      status: char.status,
+    };
+  });
+
+console.log(ricks);
